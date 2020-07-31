@@ -1,5 +1,12 @@
 import { collatedTasks } from "../constants";
 
-export const collatedTasksExist = (selectedProject: string): any => {
-  collatedTasks.find((task) => task.key === selectedProject);
+interface ITask {
+  key: string;
+  name: string;
+}
+
+export const collatedTasksExist = (
+  selectedProject: string
+): ITask | undefined => {
+  return collatedTasks.find((task: ITask) => task.key === selectedProject);
 };

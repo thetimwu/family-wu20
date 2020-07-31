@@ -6,17 +6,21 @@ interface Props {}
 export default function Header({}: Props): ReactElement {
   return (
     <header className="header" data-testid="header">
-      <div className="logo">
-        <img src="/images/logo.png" alt="The Wu Family" />
-      </div>
-      <div className="settings">
-        <ul>
-          <li>+</li>
-          <li>
-            <AiOutlineShoppingCart />
-          </li>
-        </ul>
-      </div>
+      <nav>
+        <div className="logo">
+          <img src="/images/logo.png" alt="The Wu Family" />
+        </div>
+        <div className="settings">
+          <ul>
+            <li data-testId="quick-add-task-action" className="settings__add">
+              +
+            </li>
+            <li data-testId="dark-mode-action" className="settings__darkmode">
+              <AiOutlineShoppingCart />
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
   );
 }

@@ -1,5 +1,10 @@
 import React, { ReactElement } from "react";
-import { FaChevronDown, FaRegCalendar, FaRegCalendarAlt } from "react-icons/fa";
+import {
+  FaWindows,
+  FaChevronDown,
+  FaRegCalendar,
+  FaRegCalendarAlt,
+} from "react-icons/fa";
 
 interface Props {}
 
@@ -7,14 +12,19 @@ export default function Sidebar({}: Props): ReactElement {
   return (
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
-        <li>Inbox</li>
-        <li>
+        <li data-testId="inbox" className="inbox">
+          <span>
+            <FaWindows />
+          </span>
+          <span>Inbox</span>
+        </li>
+        <li data-testId="today" className="today">
           <span>
             <FaRegCalendar />
           </span>
           <span>Today</span>
         </li>
-        <li>
+        <li data-testId="next_7" className="next_7">
           <span>
             <FaRegCalendarAlt />
           </span>

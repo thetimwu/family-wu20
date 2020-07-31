@@ -1,15 +1,16 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import firebase from "../firebase";
 import moment from "moment";
 import { collatedTasksExist } from "../helpers";
+import { ITask } from "../interface";
 
 interface Props {
-  tasks: string[];
+  tasks: ITask[];
   archivedTasks: any[];
 }
 
 export function useTasks(selectedProject: string): Props {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
   const [archivedTasks, setArchivedTasks] = useState<any[]>([]);
   useEffect(() => {
     let unsubscribe: any = firebase
@@ -64,3 +65,28 @@ export function useTasks(selectedProject: string): Props {
 
   return { tasks, archivedTasks };
 }
+
+export const useProjects = () => {
+  const [projects, setProjects] = useState<{}[]>([]);
+
+  useEffect(() => {
+    async function fetchUserProjects() {
+      const snapshot = await firebase
+        .firestore()
+        .collection("projects")
+        .where("userId", "==", "1")
+        .orderBy("projectId")
+        .get();
+      const allProjects = snapshot.docs.map((project) => ({
+        ...project.data(),
+        docId: project.id,
+      }));
+
+      if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+        setProjects(allProjects);
+      }
+    }
+  }, [projects]);
+
+  return { projects, setProjects };
+};

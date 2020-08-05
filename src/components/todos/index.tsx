@@ -1,7 +1,7 @@
 import React from "react";
 import { ITodo, IState } from "./type";
 
-const todos = (props: Props) => {
+const todos = () => {
   return <div></div>;
 };
 

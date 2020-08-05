@@ -44,3 +44,11 @@ export interface ISelectTodoActionType {
   type: typeof SELECT_TODO;
   payload: { id: string };
 }
+
+export type TodoActionTypes =
+  | ICreateTodoActionType
+  | IEditTodoActionType
+  | IToggleTodoActionType
+  | IDeleteTodoActionType;
+
+export type SelectedTodoActionTypes = ISelectTodoActionType;

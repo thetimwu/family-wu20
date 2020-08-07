@@ -47,7 +47,8 @@ export const todoSlice = createSlice({
       if (todoToEdit) {
         todoToEdit.desc = payload.desc;
       }
-      return state;
+      // no return if using immer
+      //return state;
     },
     toggle: (
       state,
@@ -57,11 +58,10 @@ export const todoSlice = createSlice({
       if (todoToToggle) {
         todoToToggle.isComplete = payload.isComplete;
       }
-      return state;
     },
     remove: (state, { payload }: PayloadAction<{ id: string }>) => {
       const index = state.findIndex((todo) => todo.id === payload.id);
-      return state.splice(index, 1);
+      state.splice(index, 1);
     },
   },
 });
@@ -73,6 +73,7 @@ export const selectTodoSlice = createSlice({
     select: (state, { payload }: PayloadAction<{ id: string }>) => {
       // below is not working for primitive, should return result directly instead.
       //   return (state = payload.id);
+      // immer not working for primitive
       return payload.id;
     },
   },

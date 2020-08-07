@@ -1,9 +1,4 @@
-import {
-  configureStore,
-  getDefaultMiddleware,
-  compose,
-  applyMiddleware,
-} from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducers/rootReducer";
 

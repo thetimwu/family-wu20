@@ -8,6 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import configureStore from "./store/store";
 
 const store = configureStore();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

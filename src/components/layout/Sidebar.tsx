@@ -12,14 +12,18 @@ import {
 } from "../../features/project/projectSlice";
 import { useProjects } from "../../hooks";
 import { useDispatch } from "react-redux";
+import { IProject } from "../../components/projects/type";
 
 interface Props {}
 
 export default function Sidebar({}: Props): ReactElement {
-  console.log("calling");
   const { projects, setProjects } = useProjects();
+  const dispatch = useDispatch();
+  dispatch(startFetching());
+  if (projects) {
+    dispatch(fetchSuccess({ payload: { projects: projects } }));
+  }
   console.log(projects);
-  // const dispatch = useDispatch();
   // useEffect(() => {
   //   if (projects) {
   //     dispatch(startFetching);

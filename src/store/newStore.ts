@@ -4,12 +4,14 @@ import {
   selectTodoSlice,
   counterSlice,
 } from "../features/todo/todoSlice";
+import { projectSlice } from "../features/project/projectSlice";
 
 export default function configureAppStore() {
   const rootReducer = {
-    todo: todoSlice.reducer,
+    todos: todoSlice.reducer,
     selectTodo: selectTodoSlice.reducer,
     counter: counterSlice.reducer,
+    projects: projectSlice.reducer,
   };
 
   const store = configureStore({

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, cloneElement } from "react";
 import firebase from "../firebase";
 import moment from "moment";
 import { collatedTasksExist } from "../helpers";
@@ -69,23 +69,43 @@ export function useTasks(selectedProject: string): Props {
 export const useProjects = () => {
   const [projects, setProjects] = useState<{}[]>([]);
 
-  useEffect(() => {
-    async function fetchUserProjects() {
-      const snapshot = await firebase
-        .firestore()
-        .collection("projects")
-        .where("userId", "==", "1")
-        .orderBy("projectId")
-        .get();
-      const allProjects = snapshot.docs.map((project) => ({
-        ...project.data(),
-        docId: project.id,
-      }));
+  // useEffect(() => {
+  //   async function fetchUserProjects() {
+  //     const snapshot = await firebase
+  //       .firestore()
+  //       .collection("projects")
+  //       .where("userId", "==", "1")
+  //       .orderBy("projectId")
+  //       .get();
+  //     console.log(snapshot);
+  //     const allProjects = snapshot.docs.map((project) => ({
+  //       ...project.data(),
+  //       docId: project.id,
+  //     }));
 
-      if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-        setProjects(allProjects);
-      }
-    }
+  //     if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+  //       setProjects(allProjects);
+  //     }
+  //   }
+  // }, [projects]);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("projects")
+      .where("userId", "==", "1")
+      .orderBy("projectId")
+      .get()
+      .then((snapshot) => {
+        const allProjects = snapshot.docs.map((project) => ({
+          ...project.data(),
+          docId: project.id,
+        }));
+
+        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+          setProjects(allProjects);
+        }
+      });
   }, [projects]);
 
   return { projects, setProjects };

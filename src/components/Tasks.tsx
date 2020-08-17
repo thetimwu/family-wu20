@@ -6,7 +6,7 @@ import { ITask } from "../interface";
 const Tasks = () => {
   const { tasks } = useTasks("1");
 
-  console.log(tasks);
+  // console.log(tasks);
   let projectName = "";
 
   return (

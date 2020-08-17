@@ -12,10 +12,10 @@ export default function Header({}: Props): ReactElement {
         </div>
         <div className="settings">
           <ul>
-            <li data-testId="quick-add-task-action" className="settings__add">
+            <li data-testid="quick-add-task-action" className="settings__add">
               +
             </li>
-            <li data-testId="dark-mode-action" className="settings__darkmode">
+            <li data-testid="dark-mode-action" className="settings__darkmode">
               <AiOutlineShoppingCart />
             </li>
           </ul>

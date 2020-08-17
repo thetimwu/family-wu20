@@ -1,30 +1,47 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState, useEffect } from "react";
 import {
   FaWindows,
   FaChevronDown,
   FaRegCalendar,
   FaRegCalendarAlt,
 } from "react-icons/fa";
+import {
+  startFetching,
+  hasError,
+  fetchSuccess,
+} from "../../features/project/projectSlice";
+import { useProjects } from "../../hooks";
+import { useDispatch } from "react-redux";
 
 interface Props {}
 
 export default function Sidebar({}: Props): ReactElement {
+  console.log("calling");
+  const { projects, setProjects } = useProjects();
+  console.log(projects);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (projects) {
+  //     dispatch(startFetching);
+
+  //   }
+  // }, [projects]);
   return (
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
-        <li data-testId="inbox" className="inbox">
+        <li data-testid="inbox" className="inbox">
           <span>
             <FaWindows />
           </span>
           <span>Inbox</span>
         </li>
-        <li data-testId="today" className="today">
+        <li data-testid="today" className="today">
           <span>
             <FaRegCalendar />
           </span>
           <span>Today</span>
         </li>
-        <li data-testId="next_7" className="next_7">
+        <li data-testid="next_7" className="next_7">
           <span>
             <FaRegCalendarAlt />
           </span>

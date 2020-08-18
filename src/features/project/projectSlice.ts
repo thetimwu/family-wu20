@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProject } from "../../components/projects/type";
 import { useProjects } from "../../hooks";
+import { IProjectWithDocID } from "../../hooks";
 
 interface IInitProject {
   projects: IProject[] | [];
@@ -27,7 +28,7 @@ export const projectSlice = createSlice({
     },
     fetchSuccess: (
       state,
-      { payload }: PayloadAction<{ projects: {}[] | [] }>
+      { payload }: PayloadAction<{ projects: IProjectWithDocID[] }>
     ) => {
       state.projects = payload.projects;
       state.isLoading = false;

@@ -1,4 +1,4 @@
-import { useState, useEffect, cloneElement } from "react";
+import { useState, useEffect } from "react";
 import firebase from "../firebase";
 import moment from "moment";
 import { collatedTasksExist } from "../helpers";
@@ -72,7 +72,7 @@ export interface IProjectWithDocID extends IProject {
 }
 
 export const useProjects = () => {
-  const [projects, setProjects] = useState<{}[]>([]);
+  const [projects, setProjects] = useState<IProjectWithDocID[]>([]);
 
   useEffect(() => {
     async function fetchUserProjects() {
@@ -82,10 +82,14 @@ export const useProjects = () => {
         .where("userId", "==", "1")
         .orderBy("projectId")
         .get();
-      const allProjects = snapshot.docs.map((project) => ({
-        ...project.data(),
-        docId: project.id,
-      }));
+      const allProjects: IProjectWithDocID[] | [] = snapshot.docs.map(
+        (project) => ({
+          name: project.data().name,
+          projectId: project.data().projectId,
+          userId: project.data().userId,
+          docId: project.id,
+        })
+      );
 
       if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
         setProjects(allProjects);

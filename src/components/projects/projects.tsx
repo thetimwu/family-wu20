@@ -1,6 +1,5 @@
 import React from "react";
-
-interface Props {}
+import { IProjectWithDocID } from "../../hooks";
 
 const projects = () => {
   return <div></div>;

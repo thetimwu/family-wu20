@@ -21,7 +21,9 @@ export default function Sidebar({}: Props): ReactElement {
   const dispatch = useDispatch();
   dispatch(startFetching());
   if (projects) {
-    dispatch(fetchSuccess({ payload: { projects: projects } }));
+    dispatch(fetchSuccess({ projects: projects }));
+  } else {
+    dispatch(hasError({ error: "Cannot load projects..." }));
   }
   console.log(projects);
   // useEffect(() => {

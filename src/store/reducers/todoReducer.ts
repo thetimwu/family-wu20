@@ -23,7 +23,7 @@ const todoInit = [
   },
   {
     id: uuid(),
-    desc: "learn redux",
+    desc: "learn javascript",
     isComplete: false,
   },
 ];

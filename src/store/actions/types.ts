@@ -20,6 +20,20 @@ export const DELETE_TODO = "DELETE_TODO";
 export const SELECT_TODO = "SELECT_TODO";
 
 //  Action Type
+export interface ILoginRequestActionType {
+  type: typeof LOGIN_REQUEST;
+}
+
+export interface ILoginSuccessActionType {
+  type: typeof LOGIN_SUCCESS;
+  payload: { token: string };
+}
+
+export interface ILoginFailureActionType {
+  type: typeof LOGOUT_FAILURE;
+  payload: { error: string };
+}
+
 export interface ICreateTodoActionType {
   type: typeof CREATE_TODO;
   payload: ITodo;

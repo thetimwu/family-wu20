@@ -18,6 +18,9 @@ export default function Header({}: Props): ReactElement {
             <li data-testid="dark-mode-action" className="settings__darkmode">
               <AiOutlineShoppingCart />
             </li>
+            <li>
+              <a href="/login">login</a>{" "}
+            </li>
           </ul>
         </div>
       </nav>

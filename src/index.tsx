@@ -7,13 +7,31 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 // import configureStore from "./store/store";
 import configureStore from "./store/newStore";
+import { createFirestoreInstance } from "redux-firestore";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import firebase from "firebase/app";
 
 const store = configureStore();
+
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: "users",
+  useFirestoreForProfile: true,
+};
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig, //fbConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance,
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <App />
+      </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

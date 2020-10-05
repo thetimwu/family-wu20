@@ -1,9 +1,6 @@
 import React, { useState, ReactElement } from "react";
 import { useDispatch } from "react-redux";
-import {
-  loginWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "../../features/auth/authSlice";
+import { loginWithEmailAndPassword } from "../../features/auth/authSlice";
 import { ILoginDetail } from "../../features/auth/types";
 
 interface Props {}
@@ -26,14 +23,9 @@ export default function LoginForm(props: Props): ReactElement {
     dispatch(loginWithEmailAndPassword(loginDetail));
   };
 
-  const signupHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(createUserWithEmailAndPassword(loginDetail));
-  };
-
   return (
     <div style={{ marginTop: 50, marginLeft: 50 }}>
-      <h1>Login</h1>
+      <h1>Signup</h1>
       <form onSubmit={(e) => submitHandler(e)}>
         <label>Email:</label>
         <br />
@@ -54,13 +46,6 @@ export default function LoginForm(props: Props): ReactElement {
         />
         <br />
         <button type="submit">Submit</button>
-        <button
-          style={{ marginLeft: 20 }}
-          type="submit"
-          onClick={(e) => signupHandler(e)}
-        >
-          Signup New User
-        </button>
       </form>
     </div>
   );
